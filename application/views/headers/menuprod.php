@@ -57,7 +57,7 @@
                         <a href="<?php echo $this->config->site_url()?>/introduccion/verProductos">Consultas</a>
                     </li>                
                     <li class="page-scroll">
-                        <a href="#">Modificaciones</a>
+                        <a href="<?php echo $this->config->site_url()?>/introduccion/verProductos2">Modificaciones</a>
                     </li>                
                     <li class="page-scroll">
                         <a href="<?php echo $this->config->site_url()?>/introduccion/verRep">Reportes</a>

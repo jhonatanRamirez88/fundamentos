@@ -36,4 +36,10 @@
         return $result;
     }
 
+    public function modificar($nombre,$paterno,$telefono,$empresa,$idPro){
+        $query = "UPDATE `proveedores` SET `nombre` = '".$nombre."', `paterno` = '".$paterno."', `telefono` = '".$telefono."', `empresa` = '".$empresa."' WHERE `idPro` = ".$idPro."";
+
+             return $this->db->query($query);   
+    }
+
 }

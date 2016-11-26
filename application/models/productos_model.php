@@ -12,6 +12,13 @@
             return $res;
     }
 
+    public function modificar($cveProd,$nombre,$precio,$existencia,$descripcion,$fecha,$idprov){
+            $query = "UPDATE `productos` SET `nombre` = '".$nombre."', `precio` = ".$precio.", `existencia` = ".$existencia.", `descripcion` = '".$descripcion."', `fecha` = '".$fecha."', `cvePro` = ".$idprov."  WHERE `cveProd` = ".$cveProd."";
+
+             return $this->db->query($query);   
+            
+    }
+
     public function todos(){
         $query = "SELECT * FROM `productos`";        
         $result = $this->db->query($query);

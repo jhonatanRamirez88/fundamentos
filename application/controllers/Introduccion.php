@@ -41,6 +41,33 @@ class Introduccion extends CI_Controller {
         $this->load->view('headers/footer');
     }
 
+    public function verProductos2(){
+        $data['productos']=$this->productos_model->todos();
+        $this->load->view('headers/menuprod');             
+        $this->load->view('verProd2', $data);
+        $this->load->view('headers/footer');
+    }
+
+    public function modificaProducto(){        
+        $this->load->model('productos_model');
+        $cveProd = $this->input->post('cveProd'); 
+        $nombre = $this->input->post('nombre');
+        $precio = $this->input->post('precio');
+        $existencia = $this->input->post('existencia');
+        $descripcion = $this->input->post('descripcion');
+        $idprov = $this->input->post('idprov');
+        $fecha = $this->input->post('fecha');
+        $result = $this->productos_model->modificar($cveProd,$nombre,$precio,$existencia,$descripcion,$fecha,$idprov);
+        
+    }
+
+    public function verProveedores2(){
+        $data['productos']=$this->productos_model->todos();
+        $this->load->view('headers/menuprod');             
+        $this->load->view('verProvee2', $data);
+        $this->load->view('headers/footer');
+    }
+
     public function crearProducto(){
         $nombre = $this->input->post('nombre');
         $precio = $this->input->post('precio');
@@ -79,6 +106,15 @@ class Introduccion extends CI_Controller {
         $result['producto']=$this->productos_model->getProducto($nombre);        
         $this->load->view('headers/menuprod');             
         $this->load->view('verProducto', $result);
+        $this->load->view('headers/footer');
+    }
+
+    public function buscarProd2(){
+        $result['proveedores']=$this->proveedores_model->todosv();
+        $nombre = $this->input->get('nombre');
+        $result['producto']=$this->productos_model->getProducto($nombre);        
+        $this->load->view('headers/menuprod');             
+        $this->load->view('modProd', $result);
         $this->load->view('headers/footer');
     }
 
@@ -153,6 +189,12 @@ class Introduccion extends CI_Controller {
         $this->load->view('headers/footer');
     }
 
+    public function verProveedor2(){
+        $data['proveedor']=$this->proveedores_model->todos();
+        $this->load->view('headers/menuprove');             
+        $this->load->view('verProvee2', $data);
+        $this->load->view('headers/footer');
+    }
         public function buscarProveedor(){
         $nombre = $this->input->get('nombre');
         $result['proveedor']=$this->proveedores_model->getProveedor($nombre);        
@@ -161,12 +203,32 @@ class Introduccion extends CI_Controller {
         $this->load->view('headers/footer');
     }
 
+       public function buscarProveedor2(){
+        $nombre = $this->input->get('nombre');
+        $result['proveedor']=$this->proveedores_model->getProveedor($nombre);        
+        $this->load->view('headers/menuprove');             
+        $this->load->view('crearProveedor2', $result);
+        $this->load->view('headers/footer');
+    }
+
+   
 
     public function verRep(){
         $data['productos']=$this->productos_model->todos();
         $this->load->view('headers/menuprod');             
         $this->load->view('verReporte', $data);
         $this->load->view('headers/footer');
+    }
+
+
+    public function modificaProveedor(){                         
+        $nombre = $this->input->post('nombre');
+        $paterno = $this->input->post('paterno');
+        $telefono = $this->input->post('telefono');
+        $empresa = $this->input->post('empresa');        
+        $idPro = $this->input->post('idPro');        
+        $result = $this->proveedores_model->modificar($nombre,$paterno,$telefono,$empresa,$idPro);
+        
     }
 
 }
